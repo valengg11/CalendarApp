@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
+import DateTimePicker from "react-datetime-picker";
+import moment from "moment";
 
 const customStyles = {
   content: {
@@ -14,10 +16,26 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
+const now = moment().minutes(0).seconds(0).add(1, "hours");
+const then = now.clone().add(1, "hours");
+
 export const CalendarModal = () => {
+  const [startDate, setStartDate] = useState(now.toDate());
+  const [endDate, setEndDate] = useState(then.toDate());
+
   const closeModal = () => {
     console.log("closing");
   };
+
+  const handleStartDateChange = (e) => {
+    setStartDate(e);
+    console.log(e);
+  };
+
+  const handleEndDateChange = (e) => {
+    setEndDate(e);
+  };
+
   return (
     <div>
       <Modal
@@ -29,17 +47,30 @@ export const CalendarModal = () => {
         className="modal"
         overlayClassName="modal-fondo"
       >
-        <h1 className='modal-title'> New event </h1>
+        <h1 className="modal-title"> New event </h1>
         <hr />
         <form className="container">
           <div className="form-group">
             <label>Start date and time</label>
-            <input className="form-control" placeholder="Start date" />
+            <br />
+
+            <DateTimePicker
+              onChange={handleStartDateChange}
+              value={startDate}
+              className="form-control"
+            />
           </div>
 
           <div className="form-group">
             <label>End date and time</label>
-            <input className="form-control" placeholder="End date" />
+            <br />
+
+            <DateTimePicker
+              onChange={handleEndDateChange}
+              value={endDate}
+              className="form-control"
+              minDate = {startDate}
+            />
           </div>
 
           <hr />
