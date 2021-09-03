@@ -111,3 +111,15 @@ html, body {
     outline: none;
     padding: 10px;
 }
+
+.btn.btn-outline-primary.btn-block{
+    background: #900C3F;
+    border: none;
+    color: white;
+
+}
+
+.modal-title{
+    letter-spacing: 3px;
+    text-align: center;
+}
