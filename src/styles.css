@@ -1,27 +1,28 @@
-html, body {
+html,
+body {
     height: 100vh;
     width: 100vw;
     font-family: 'Poppins', sans-serif;
-    /* background: honeydew; */
     background: #FFE8E8;
 }
 
-.calendar-screen{
+.calendar-screen {
     display: flex;
     flex-flow: column;
     height: 100vh;
 }
 
-.rbc-calendar{
+.rbc-calendar {
     height: 100vh;
 }
 
 .rbc-today {
-    background-color: #FFCECE!important;
+    background-color: #FFCECE !important;
 }
 
 
-.rbc-event:focus, .rbc-day-slot .rbc-background-event:focus {
+.rbc-event:focus,
+.rbc-day-slot .rbc-background-event:focus {
     outline: none;
 }
 
@@ -30,28 +31,32 @@ html, body {
 }
 
 .rbc-event-label {
-    font-size: 60%!important;
+    font-size: 60% !important;
 }
 
-.rbc-ellipsis, .rbc-event-label, .rbc-row-segment .rbc-event-content, .rbc-show-more {
+.rbc-ellipsis,
+.rbc-event-label,
+.rbc-row-segment .rbc-event-content,
+.rbc-show-more {
     white-space: pre-line;
     font-size: 14px;
 }
 
 
-.rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
-    /* background: white; */
+.rbc-toolbar button:active:hover,
+.rbc-toolbar button:active:focus,
+.rbc-toolbar button.rbc-active:hover,
+.rbc-toolbar button.rbc-active:focus {
     background-color: #900C3F;
     color: white;
     outline: none;
 }
 
-.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
-    /* background-color: white; */
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
     background-color: #900C3F;
     color: white;
     outline: none;
-    /* outline-color: #900C3F; */
 }
 
 .rbc-off-range-bg {
@@ -72,7 +77,7 @@ html, body {
 
 /* Modal */
 
-.ReactModalPortal > div{
+.ReactModalPortal>div {
     opacity: 0;
 }
 
@@ -112,24 +117,34 @@ html, body {
     padding: 10px;
 }
 
-.btn.btn-outline-primary.btn-block{
+.btn.btn-block {
     background: #900C3F;
     border: none;
     color: white;
-
 }
 
-.modal-title{
+.btn.btn-block:hover {
+    background: #FFCECE;
+    color: white;
+}
+
+.btn.btn-block:focus {
+    background: #FFCECE;
+    color: white;
+    box-shadow: none;
+}
+
+.modal-title {
     letter-spacing: 3px;
     text-align: center;
 }
 
 /* DatePicker */
 
-.react-datetime-picker input:focus{
+.react-datetime-picker input:focus {
     outline: none;
 }
 
-.react-datetime-picker__wrapper{
-    border: 0px solid gray!important;
+.react-datetime-picker__wrapper {
+    border: 0px solid gray !important;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
+import Swal from "sweetalert2";
 
 const customStyles = {
   content: {
@@ -22,25 +23,70 @@ const then = now.clone().add(1, "hours");
 export const CalendarModal = () => {
   const [startDate, setStartDate] = useState(now.toDate());
   const [endDate, setEndDate] = useState(then.toDate());
+  const [titleValid, setTitleValid] = useState(true)
+
+  const [formValues, setFormValues] = useState({
+    title: "Evento",
+    notes: "Salida a comer hamburguesa",
+    start: now.toDate(),
+    end: then.toDate(),
+  });
+
+  const { title, notes, start, end } = formValues;
+
+  const handleInputChange = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value,
+    });
+  };
 
   const closeModal = () => {
-    console.log("closing");
+    console.log('cerrar')
+    //TOD cerrar modal
   };
 
   const handleStartDateChange = (e) => {
     setStartDate(e);
-    console.log(e);
+    setFormValues({
+      ...formValues,
+      start: e,
+    });
   };
 
   const handleEndDateChange = (e) => {
     setEndDate(e);
+    setFormValues({
+      ...formValues,
+      end: e,
+    });
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+
+    const momentStart = moment(start);
+    const momentEnd = moment(end);
+
+    if (momentStart.isSameOrAfter(momentEnd)) {
+      return Swal.fire(
+        "Ups!",
+        "The end date should be after the start date",
+        "error"
+      );
+    }
+    if(title.trim().length < 2){
+        return setTitleValid(false)
+    }
+
+    setTitleValid(true)
+    closeModal()
   };
 
   return (
     <div>
       <Modal
         isOpen={true}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         closeTimeoutMS={200}
@@ -49,7 +95,7 @@ export const CalendarModal = () => {
       >
         <h1 className="modal-title"> New event </h1>
         <hr />
-        <form className="container">
+        <form className="container" onSubmit={handleSubmitForm}>
           <div className="form-group">
             <label>Start date and time</label>
             <br />
@@ -69,7 +115,7 @@ export const CalendarModal = () => {
               onChange={handleEndDateChange}
               value={endDate}
               className="form-control"
-              minDate = {startDate}
+              minDate={startDate}
             />
           </div>
 
@@ -78,10 +124,12 @@ export const CalendarModal = () => {
             <label>Title</label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${!titleValid && 'is-invalid'}`}
               placeholder="Event title"
               name="title"
               autoComplete="off"
+              value={title}
+              onChange={handleInputChange}
             />
             <small id="emailHelp" className="form-text text-muted">
               A short description
@@ -95,13 +143,15 @@ export const CalendarModal = () => {
               placeholder="Notes"
               rows="5"
               name="notes"
+              value={notes}
+              onChange={handleInputChange}
             ></textarea>
             <small id="emailHelp" className="form-text text-muted">
               Adicional Information
             </small>
           </div>
 
-          <button type="submit" className="btn btn-outline-primary btn-block">
+          <button type="submit" className="btn btn-block">
             <i className="far fa-save"></i>
             <span> Save</span>
           </button>
