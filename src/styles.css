@@ -21,8 +21,8 @@ html, body {
 }
 
 
-.rbc-event, .rbc-day-slot .rbc-background-event {
-    background-color: #900C3F!important;
+.rbc-event:focus, .rbc-day-slot .rbc-background-event:focus {
+    outline: none;
 }
 
 .rbc-day-slot .rbc-event-content {
@@ -38,6 +38,34 @@ html, body {
     font-size: 14px;
 }
 
-.rbc-agenda-view table.rbc-agenda-table {
-    background: #FFCECE;
+
+.rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
+    /* background: white; */
+    background-color: #900C3F;
+    color: white;
+    outline: none;
+}
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+    /* background-color: white; */
+    background-color: #900C3F;
+    color: white;
+    outline: none;
+    /* outline-color: #900C3F; */
+}
+
+.rbc-off-range-bg {
+    background: white;
+}
+
+.rbc-toolbar button:active {
+    background-color: #FFCECE;
+    color: white;
+    outline: none;
+}
+
+.rbc-toolbar button:focus {
+    background-color: #FFCECE;
+    /* color: white; */
+    outline: none;
 }

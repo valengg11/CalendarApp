@@ -5,7 +5,6 @@ import { Navbar } from "../ui/Navbar";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-
 const localizer = momentLocalizer(moment);
 const events = [
   {
@@ -16,6 +15,17 @@ const events = [
 ];
 
 export const CalendarScreen = () => {
+  const eventStyleGetter = (event, start, end, isSelected) => {
+    const style = {
+      backgroundColor: "#900C3F",
+      color: "white",
+      border: 'none'
+    };
+
+    return {
+      style,
+    };
+  };
   return (
     <div className=".calendar-screen">
       <Navbar />
@@ -24,6 +34,7 @@ export const CalendarScreen = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
+        eventPropGetter={eventStyleGetter}
       />
     </div>
   );
