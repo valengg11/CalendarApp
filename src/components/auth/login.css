@@ -11,7 +11,7 @@
 
 .login-form-1 h3 {
     text-align: center;
-    color: #3174ad;
+    color: #343a40;
     letter-spacing: 3px;
 }
 
@@ -19,7 +19,7 @@
     border-radius: 5px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
     padding: 5%;
-    background: #3174ad;
+    background: #343a40;
 }
 
 .login-form-2 h3 {
@@ -44,12 +44,12 @@
 
 .login-form-1 .btnSubmit {
     color: #fff;
-    background-color: #3174ad;
+    background-color: #343a40;
 }
 
 .login-form-2 .btnSubmit {
     background-color: #fff;
-    color: #3174ad;
+    color: #343a40;
 }
 
 .login-form-2 .ForgetPwd {
@@ -59,7 +59,7 @@
 }
 
 .login-form-1 .ForgetPwd {
-    color: #3174ad;
+    color: #343a40;
     font-weight: 600;
     text-decoration: none;
 }

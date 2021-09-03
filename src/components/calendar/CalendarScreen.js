@@ -9,7 +9,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 const events = [
   {
-    title: "Cumplea;os del jefe",
+    title: "Cumpleaños del jefe",
     start: moment().toDate(),
     end: moment().add(2, "hours").toDate(),
   },
