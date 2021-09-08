@@ -4,8 +4,11 @@ import moment from "moment";
 import { Navbar } from "../ui/Navbar";
 import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
+import { useDispatch } from "react-redux";
+import { uiOpenModal } from "../../redux/actions/ui";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { eventSetActive } from "../../redux/actions/events";
 
 const localizer = momentLocalizer(moment);
 const events = [
@@ -22,15 +25,23 @@ const events = [
 ];
 
 export const CalendarScreen = () => {
+
+  // const state = useSelector(state => state.events)
+  // const {activeEvent} = state
+
+
+  const dispatch = useDispatch()
+
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
   );
 
-  const onDoubleClick = (e) => {
-    console.log(e);
+  const onDoubleClick = () => {
+    dispatch(uiOpenModal())
   };
 
   const onSelectEvent = (e) => {
+    dispatch(eventSetActive(e))
     console.log(e);
   };
 

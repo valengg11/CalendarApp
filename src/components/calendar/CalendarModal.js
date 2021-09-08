@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
 import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import Swal from "sweetalert2";
+import { uiCloseModal } from "../../redux/actions/ui";
 
 const customStyles = {
   content: {
@@ -21,9 +23,15 @@ const now = moment().minutes(0).seconds(0).add(1, "hours");
 const then = now.clone().add(1, "hours");
 
 export const CalendarModal = () => {
+
+  const dispatch = useDispatch();
+
+  const state = useSelector((state) => state.ui);
+  const { modalOpen } = state;
+
   const [startDate, setStartDate] = useState(now.toDate());
   const [endDate, setEndDate] = useState(then.toDate());
-  const [titleValid, setTitleValid] = useState(true)
+  const [titleValid, setTitleValid] = useState(true);
 
   const [formValues, setFormValues] = useState({
     title: "Evento",
@@ -42,8 +50,7 @@ export const CalendarModal = () => {
   };
 
   const closeModal = () => {
-    console.log('cerrar')
-    //TOD cerrar modal
+    dispatch(uiCloseModal());
   };
 
   const handleStartDateChange = (e) => {
@@ -75,18 +82,18 @@ export const CalendarModal = () => {
         "error"
       );
     }
-    if(title.trim().length < 2){
-        return setTitleValid(false)
+    if (title.trim().length < 2) {
+      return setTitleValid(false);
     }
 
-    setTitleValid(true)
-    closeModal()
+    setTitleValid(true);
+    closeModal();
   };
 
   return (
     <div>
       <Modal
-        isOpen={true}
+        isOpen={modalOpen}
         onRequestClose={closeModal}
         style={customStyles}
         closeTimeoutMS={200}
@@ -124,7 +131,7 @@ export const CalendarModal = () => {
             <label>Title</label>
             <input
               type="text"
-              className={`form-control ${!titleValid && 'is-invalid'}`}
+              className={`form-control ${!titleValid && "is-invalid"}`}
               placeholder="Event title"
               name="title"
               autoComplete="off"
