@@ -5,7 +5,11 @@ import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import Swal from "sweetalert2";
 import { uiCloseModal } from "../../redux/actions/ui";
-import { eventAddNew, eventClearActiveEvent } from "../../redux/actions/events";
+import {
+  eventAddNew,
+  eventClearActiveEvent,
+  eventUpdated,
+} from "../../redux/actions/events";
 
 const customStyles = {
   content: {
@@ -48,6 +52,8 @@ export const CalendarModal = () => {
   useEffect(() => {
     if (activeEvent) {
       setFormValues(activeEvent);
+    } else {
+      setFormValues(initEvent);
     }
   }, [activeEvent, setFormValues]);
 
@@ -60,7 +66,7 @@ export const CalendarModal = () => {
 
   const closeModal = () => {
     dispatch(uiCloseModal());
-    dispatch(eventClearActiveEvent())
+    dispatch(eventClearActiveEvent());
     setFormValues(initEvent);
   };
 
@@ -93,20 +99,25 @@ export const CalendarModal = () => {
         "error"
       );
     }
+
     if (title.trim().length < 2) {
       return setTitleValid(false);
     }
 
-    dispatch(
-      eventAddNew({
-        ...formValues,
-        id: new Date().getTime(),
-        user: {
-          _id: "123",
-          name: "Valen",
-        },
-      })
-    );
+    if (activeEvent) {
+      dispatch(eventUpdated(formValues));
+    } else {
+      dispatch(
+        eventAddNew({
+          ...formValues,
+          id: new Date().getTime(),
+          user: {
+            _id: "123",
+            name: "Valen",
+          },
+        })
+      );
+    }
 
     setTitleValid(true);
     closeModal();

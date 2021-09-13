@@ -10,14 +10,15 @@ import { uiOpenModal } from "../../redux/actions/ui";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { eventSetActive } from "../../redux/actions/events";
 import { AddNewFab } from "../ui/AddNewFab";
+import { DeleteEventFab } from "../ui/DeleteEventFab";
 
 const localizer = momentLocalizer(moment);
 
 export const CalendarScreen = () => {
   const dispatch = useDispatch();
 
-  const state = useSelector((state) => state.calendar);
-  const { events } = state;
+  const { events, activeEvent } = useSelector((state) => state.calendar);
+  
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
@@ -64,6 +65,9 @@ export const CalendarScreen = () => {
           event: CalendarEvent,
         }}
       />
+      {
+        activeEvent && <DeleteEventFab/>
+      }
       <AddNewFab />
       <CalendarModal />
     </div>

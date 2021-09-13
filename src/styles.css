@@ -183,3 +183,10 @@ tbody tr{
     outline: none;
     color: #FFCECE;
 }
+
+.fab-danger{
+    bottom: 25px;
+    left: 25px;
+    padding: 10px;
+    position: fixed;
+}
