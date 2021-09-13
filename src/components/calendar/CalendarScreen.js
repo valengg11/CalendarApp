@@ -9,6 +9,7 @@ import { uiOpenModal } from "../../redux/actions/ui";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { eventSetActive } from "../../redux/actions/events";
+import { AddNewFab } from "../ui/AddNewFab";
 
 const localizer = momentLocalizer(moment);
 const events = [
@@ -26,10 +27,6 @@ const events = [
 
 export const CalendarScreen = () => {
 
-  // const state = useSelector(state => state.events)
-  // const {activeEvent} = state
-
-
   const dispatch = useDispatch()
 
   const [lastView, setLastView] = useState(
@@ -42,7 +39,7 @@ export const CalendarScreen = () => {
 
   const onSelectEvent = (e) => {
     dispatch(eventSetActive(e))
-    console.log(e);
+    dispatch(uiOpenModal())
   };
 
   const onViewChange = (e) => {
@@ -78,6 +75,7 @@ export const CalendarScreen = () => {
           event: CalendarEvent,
         }}
       />
+      <AddNewFab/>
       <CalendarModal/>
     </div>
   );
