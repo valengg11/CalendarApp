@@ -71,8 +71,11 @@ body {
 
 .rbc-toolbar button:focus {
     background-color: #FFCECE;
-    /* color: white; */
     outline: none;
+}
+
+tbody tr{
+    border: 0.5px solid white!important;
 }
 
 /* Modal */
@@ -159,6 +162,11 @@ body {
     position: fixed;
     background: #900C3F;
     color: white;
+    cursor: pointer;
+}
+
+.fab i{
+    cursor: pointer;
 }
 
 .fab:active{

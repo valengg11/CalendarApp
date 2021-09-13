@@ -17,7 +17,7 @@ const initialState = {
   activeEvent: null,
 };
 
-export const eventReducer = (state = initialState, action) => {
+export const calendarReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.eventSetActive:
       return {
@@ -31,7 +31,12 @@ export const eventReducer = (state = initialState, action) => {
           ...state.events,
           action.payload
         ]
-      }  
+      } 
+    case types.eventClearActiveEvent:
+      return {
+        ...state,
+        activeEvent: null,
+      }   
 
     default:
       return state;
