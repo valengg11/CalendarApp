@@ -133,7 +133,7 @@ export const CalendarModal = () => {
         className="modal"
         overlayClassName="modal-fondo"
       >
-        <h1 className="modal-title"> New event </h1>
+        <h1 className="modal-title"> {activeEvent ? 'Edit event' : 'New event'} </h1>
         <hr />
         <form className="container" onSubmit={handleSubmitForm}>
           <div className="form-group">
